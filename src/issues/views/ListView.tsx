@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { IssueList } from '../components/IssueList';
 import { LabelPicker } from '../components/LabelPicker';
 
 
 export const ListView = () => {
+  const [selectedLabels, setSeletedLabels] = useState<string[]>([]);
+
+  const onLabelChange  = (labelName: string) => {
+    setSeletedLabels((prev) => {
+      if (prev.includes(labelName)) {
+        return prev.filter((label) => label !== labelName);
+      }
+      return [...prev, labelName];
+    });
+  }
+
   return (
     <div className="row mt-5">
       
@@ -11,7 +23,10 @@ export const ListView = () => {
       </div>
       
       <div className="col-4">
-        <LabelPicker />
+        <LabelPicker 
+          selectedLabels={selectedLabels}
+          onChange={onLabelChange}
+        />
       </div>
     </div>
   )
