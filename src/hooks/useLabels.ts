@@ -3,7 +3,7 @@ import { githubApi } from '../api/githubApis';
 import { Label } from '../interfaces';
 
 const getLabels = async (): Promise<Label[]> => {
-  const { data } = await githubApi.get('/labels');
+  const { data } = await githubApi.get('/labels?per_page=100');
   return data;
 };
 
