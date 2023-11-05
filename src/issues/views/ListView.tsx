@@ -9,7 +9,7 @@ import { State } from '../../interfaces';
 export const ListView = () => {
   const [selectedLabels, setSeletedLabels] = useState<string[]>([]);
   const [state, setState] = useState<State>();
-  const issuesQuery = useIssues();
+  const issuesQuery = useIssues({ state, labels: selectedLabels });
 
   const onLabelChange = (labelName: string) => {
     setSeletedLabels((prev) => {
